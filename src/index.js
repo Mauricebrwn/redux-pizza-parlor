@@ -7,6 +7,7 @@ import './index.css';
 import App from './components/App/App';
 
 
+
 const pizzaList = (state = [], action) => {
     switch (action.type) {
         case 'SET_PIZZALIST':
