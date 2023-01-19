@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
+import CustomerForm from '../CustomerForm';
+
 
 function App() {
 
@@ -44,6 +46,9 @@ function App() {
 
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
+      
+      <CustomerForm />
+
       <table className= "table">
         <thead>
           <tr>
@@ -68,6 +73,7 @@ function App() {
         </>
         </tbody>
       </table>
+
     </div>
   );
 }
