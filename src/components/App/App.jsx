@@ -25,20 +25,49 @@ function App() {
     })
   }, []);
 
+  const totalOrderPrice = () => {
+    let total=0;
+    let totalPrice=[];
+    for (let price of totalPrice) {
+      
+    return total
+    }
+  }
+
 
   return (
     <div className='App'>
       <header className='App-header'>
-        <h1 className='App-title'>Prime Pizza</h1>
+        <h1 className='App-title'>Prime Pizza </h1>
+        <h1 className='App-total-cost'>Total: {totalOrderPrice.total}$</h1>
       </header>
 
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
-      <ul>
-            {pizzaList.map((pizza) => {
-                return <li key={pizza.id}>{pizza.name}</li>
-            })}
-        </ul>
+      <table className= "table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Add/Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+        <>
+        {pizzaList.map(pizza => (
+          <tr key={pizza.id} className="active-row">
+            <td><img src={pizza.image_path} height="150" width="175"></img></td>
+            <td>{pizza.name}</td>
+            <td>{pizza.description}</td>
+            <td>${pizza.price}</td>
+            <td><button>Add or Remove</button></td>
+          </tr>
+        ))}
+        </>
+        </tbody>
+      </table>
     </div>
   );
 }
