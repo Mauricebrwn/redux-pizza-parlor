@@ -41,7 +41,8 @@ const cartList = (
 ) => {
   if (action.type === 'ADD_CART') {
     let newCartArray = [...state];
-    newCartArray.push(action.payload.name);
+    console.log(action.payload)
+    newCartArray.push(action.payload);
     return newCartArray;
   }
   return state;

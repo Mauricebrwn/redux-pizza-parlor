@@ -9,12 +9,8 @@ import CustomerForm from '../CustomerForm';
 function App() {
 
   const[pizzaName, setPizzaName] = useState ('')
-  // const[pizzaCost, setPizzaCost] = useState ('')
+  const[pizzaCost, setPizzaCost] = useState ('')
 
-  const pizzaData = {
-    name: pizzaName,
-    // cost: pizzaCost
-  }
 
   const pizzaList = useSelector(store => store.pizzaList);
   const cartList = useSelector(store => store.cartList);
@@ -44,10 +40,18 @@ function App() {
     }
   }
 
-  const createCart = (event) => {
+  const handleCartClick = (pizza) => {
+    setPizzaName(pizza.name),
+    setPizzaCost(pizza.price)
+    console.log(pizzaName);
+    console.log(pizzaCost);
+
+  }
+
+  const createCart = (pizzaName) => {
     dispatch({
       type: 'ADD_CART',
-      payload: pizzaData
+      payload: pizzaName
     })
   } 
 
@@ -81,7 +85,7 @@ function App() {
             <td>{pizza.name}</td>
             <td>{pizza.description}</td>
             <td>${pizza.price}</td>
-            <td><button onClick={setPizzaName(pizza.name)}>Add or Remove</button></td>
+            <td><button onClick={() => handleCartClick(pizza)}>Add or Remove</button></td>
           </tr>
         ))}
         </>
