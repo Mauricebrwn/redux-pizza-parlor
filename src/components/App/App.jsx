@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import CustomerForm from '../CustomerForm';
@@ -9,9 +9,12 @@ import { HashRouter as Router, Route, Link, useHistory } from 'react-router-dom'
 
 function App() {
 
-  const pizzaList = useSelector(store => store.pizzaList);
+  const[pizzaName, setPizzaName] = useState ('')
+  const[pizzaCost, setPizzaCost] = useState ('')
 
-  const history = useHistory();
+
+  const pizzaList = useSelector(store => store.pizzaList);
+  const cartList = useSelector(store => store.cartList);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,16 +31,32 @@ function App() {
       console.error('GET Pizza error', error)
     })
   }, []);
-
-  const totalOrderPrice = () => {
-    let total=0;
+  
+  
+  const totalOrderPrice = ([]) => {
     let totalPrice=[];
-    for (let price of totalPrice) {
-      
-    return total
-    }
+    let price = (pizzaData.cost);
+    let sum = totalPrice.reduce(
+      (totalPrice, price) => totalPrice + price, 
+      price
+    )
+    return sum
   }
 
+  const handleCartClick = (pizza) => {
+    setPizzaName(pizza.name),
+    setPizzaCost(pizza.price)
+    console.log(pizzaName);
+    console.log(pizzaCost);
+
+  }
+
+  const createCart = (pizzaName) => {
+    dispatch({
+      type: 'ADD_CART',
+      payload: pizzaName
+    })
+  } 
 
   return (
     <Router>

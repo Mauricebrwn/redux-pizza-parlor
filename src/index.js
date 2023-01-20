@@ -19,10 +19,33 @@ const customerInfoList = (
       zip: '55555',
       type: 'delivery'
     }
+
   ], action
   ) => {
   if (action.type === 'ADD_CUSTOMER') {
     return action.payload;
+  }
+  return state;
+}
+
+//cart reducer 
+const cartList = (
+  state=[
+    {
+      name: 'Bad Date',
+      price: 24.99
+    },
+    {
+      name: 'Tomato Soup',
+      price: 12.99
+    }
+  ],action
+) => {
+  if (action.type === 'ADD_CART') {
+    let newCartArray = [...state];
+    console.log(action.payload)
+    newCartArray.push(action.payload);
+    return newCartArray;
   }
   return state;
 }
@@ -34,13 +57,15 @@ const pizzaList = (state = [], action) => {
       default:
           return state;
   }
+
 }
 
 // Redux store
 const reduxStore = createStore(
   combineReducers({
     customerInfoList,
-    pizzaList
+    pizzaList,
+    cartList
   }),
   applyMiddleware(logger)
 )
