@@ -4,14 +4,14 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import CustomerForm from '../CustomerForm';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import Home from '../Home';
+import { HashRouter as Router, Route, Link, useHistory } from 'react-router-dom';
 
 
 function App() {
 
   const pizzaList = useSelector(store => store.pizzaList);
 
+  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,15 +29,26 @@ function App() {
     })
   }, []);
 
-  
+  const totalOrderPrice = () => {
+    let total=0;
+    let totalPrice=[];
+    for (let price of totalPrice) {
+      
+    return total
+    }
+  }
 
 
   return (
     <Router>
       <div className='App'>
-        <Home />
-        
-        <CustomerForm />
+        <header className='App-header'>
+          <h1 className='App-title'>Prime Pizza </h1>
+          <h1 className='App-total-cost'>Total: {totalOrderPrice.total}$</h1>
+        </header>
+
+        <img src='images/pizza_photo.png' />
+        <p>Pizza is great.</p>
 
         <table className= "table">
           <thead>
@@ -63,12 +74,13 @@ function App() {
           </>
           </tbody>
         </table>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        {/* <Route exact path="/customerForm">
+        <Link to="/customerForm">
+          <button>Next</button>
+        </Link>
+
+        <Route exact path="/customerForm">
           <CustomerForm />
-        </Route> */}
+        </Route>
         {/* <Route exact path="/orderCheckout">
           <OrderCheckout />
         </Route> */}
