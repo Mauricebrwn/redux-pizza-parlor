@@ -19,6 +19,7 @@ const customerInfoList = (
       zip: '55555',
       type: 'delivery'
     }
+
   ], action
   ) => {
   if (action.type === 'ADD_CUSTOMER') {
@@ -34,6 +35,7 @@ const pizzaList = (state = [], action) => {
       default:
           return state;
   }
+
 }
 
 // Redux store
