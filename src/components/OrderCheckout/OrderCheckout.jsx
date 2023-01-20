@@ -85,3 +85,5 @@ function OrderCheckout () {
         </>
     )
 }
+
+export default OrderCheckout;

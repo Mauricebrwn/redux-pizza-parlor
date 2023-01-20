@@ -26,6 +26,7 @@ const customerInfoList = (
   return state;
 }
 
+
 const pizzaList = (state = [], action) => {
   switch (action.type) {
       case 'SET_PIZZALIST':
