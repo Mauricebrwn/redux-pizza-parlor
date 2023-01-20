@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import CustomerForm from '../CustomerForm';
@@ -8,8 +8,16 @@ import CustomerForm from '../CustomerForm';
 
 function App() {
 
-  const pizzaList = useSelector(store => store.pizzaList);
+  const[pizzaName, setPizzaName] = useState ('')
+  // const[pizzaCost, setPizzaCost] = useState ('')
 
+  const pizzaData = {
+    name: pizzaName,
+    // cost: pizzaCost
+  }
+
+  const pizzaList = useSelector(store => store.pizzaList);
+  const cartList = useSelector(store => store.cartList);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,6 +44,12 @@ function App() {
     }
   }
 
+  const createCart = (event) => {
+    dispatch({
+      type: 'ADD_CART',
+      payload: pizzaData
+    })
+  } 
 
   return (
     <div className='App'>
@@ -67,13 +81,21 @@ function App() {
             <td>{pizza.name}</td>
             <td>{pizza.description}</td>
             <td>${pizza.price}</td>
-            <td><button>Add or Remove</button></td>
+            <td><button onClick={setPizzaName(pizza.name)}>Add or Remove</button></td>
           </tr>
         ))}
         </>
         </tbody>
       </table>
-
+          <div>
+            {cartList.map((cartItem) => {
+            return (
+              <>
+              <li>{cartItem.name}</li>
+              </>
+            )
+            })}
+          </div>
     </div>
   );
 }

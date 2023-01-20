@@ -26,6 +26,27 @@ const customerInfoList = (
   return state;
 }
 
+//cart reducer 
+const cartList = (
+  state=[
+    {
+      name: 'Bad Date',
+      price: 24.99
+    },
+    {
+      name: 'Tomato Soup',
+      price: 12.99
+    }
+  ],action
+) => {
+  if (action.type === 'ADD_CART') {
+    let newCartArray = [...state];
+    newCartArray.push(action.payload.name);
+    return newCartArray;
+  }
+  return state;
+}
+
 const pizzaList = (state = [], action) => {
   switch (action.type) {
       case 'SET_PIZZALIST':
@@ -39,7 +60,8 @@ const pizzaList = (state = [], action) => {
 const reduxStore = createStore(
   combineReducers({
     customerInfoList,
-    pizzaList
+    pizzaList,
+    cartList
   }),
   applyMiddleware(logger)
 )
