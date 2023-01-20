@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import CustomerForm from '../CustomerForm';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import Home from '../Home';
 
 
 function App() {
@@ -30,14 +32,16 @@ function App() {
       console.error('GET Pizza error', error)
     })
   }, []);
-
-  const totalOrderPrice = () => {
-    let total=0;
+  
+  
+  const totalOrderPrice = ([]) => {
     let totalPrice=[];
-    for (let price of totalPrice) {
-      
-    return total
-    }
+    let price = (pizzaData.cost);
+    let sum = totalPrice.reduce(
+      (totalPrice, price) => totalPrice + price, 
+      price
+    )
+    return sum
   }
 
   const handleCartClick = (pizza) => {
@@ -56,16 +60,10 @@ function App() {
   } 
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Prime Pizza </h1>
-        <h1 className='App-total-cost'>Total: {totalOrderPrice.total}$</h1>
-      </header>
-
-      <img src='images/pizza_photo.png' />
-      <p>Pizza is great.</p>
-      
-      <CustomerForm />
+    <Router>
+      <div className='App'>
+        
+        <CustomerForm />
 
       <table className= "table">
         <thead>

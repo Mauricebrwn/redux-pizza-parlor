@@ -9,6 +9,7 @@ import App from './components/App/App';
 
 // customer info reducer
 const customerInfoList = (
+
   state=[
     {
       id: 1,
@@ -18,6 +19,7 @@ const customerInfoList = (
       zip: '55555',
       type: 'delivery'
     }
+
   ], action
   ) => {
   if (action.type === 'ADD_CUSTOMER') {
@@ -55,6 +57,7 @@ const pizzaList = (state = [], action) => {
       default:
           return state;
   }
+
 }
 
 // Redux store
