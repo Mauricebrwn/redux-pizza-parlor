@@ -9,6 +9,7 @@ import App from './components/App/App';
 
 // customer info reducer
 const customerInfoList = (
+
   state=[
     {
       id: 1,
