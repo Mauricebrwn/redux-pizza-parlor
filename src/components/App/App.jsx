@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import CustomerForm from '../CustomerForm';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import Home from '../Home';
 
 
 function App() {
@@ -27,54 +29,51 @@ function App() {
     })
   }, []);
 
-  const totalOrderPrice = () => {
-    let total=0;
-    let totalPrice=[];
-    for (let price of totalPrice) {
-      
-    return total
-    }
-  }
+  
 
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <h1 className='App-title'>Prime Pizza </h1>
-        <h1 className='App-total-cost'>Total: {totalOrderPrice.total}$</h1>
-      </header>
+    <Router>
+      <div className='App'>
+        <Home />
+        
+        <CustomerForm />
 
-      <img src='images/pizza_photo.png' />
-      <p>Pizza is great.</p>
-      
-      <CustomerForm />
-
-      <table className= "table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Add/Remove</th>
-          </tr>
-        </thead>
-        <tbody>
-        <>
-        {pizzaList.map(pizza => (
-          <tr key={pizza.id} className="active-row">
-            <td><img src={pizza.image_path} height="150" width="175"></img></td>
-            <td>{pizza.name}</td>
-            <td>{pizza.description}</td>
-            <td>${pizza.price}</td>
-            <td><button>Add or Remove</button></td>
-          </tr>
-        ))}
-        </>
-        </tbody>
-      </table>
-
-    </div>
+        <table className= "table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Add/Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+          <>
+          {pizzaList.map(pizza => (
+            <tr key={pizza.id} className="active-row">
+              <td><img src={pizza.image_path} height="150" width="175"></img></td>
+              <td>{pizza.name}</td>
+              <td>{pizza.description}</td>
+              <td>${pizza.price}</td>
+              <td><button>Add or Remove</button></td>
+            </tr>
+          ))}
+          </>
+          </tbody>
+        </table>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        {/* <Route exact path="/customerForm">
+          <CustomerForm />
+        </Route> */}
+        {/* <Route exact path="/orderCheckout">
+          <OrderCheckout />
+        </Route> */}
+      </div>
+    </Router>
   );
 }
 
