@@ -15,6 +15,7 @@ const pizzaList = (state = [], action) => {
         default:
             return state;
     }
+
 }
 
 const reduxStore = createStore(

@@ -25,21 +25,22 @@ function App() {
     })
   }, []);
 
-  const totalOrderPrice = () => {
-    let total=0;
+  
+  const totalOrderPrice = ([]) => {
     let totalPrice=[];
-    for (let price of totalPrice) {
-      
-    return total
-    }
+    let price = (pizzaData.cost);
+    let sum = totalPrice.reduce(
+      (totalPrice, price) => totalPrice + price, 
+      price
+    )
+    return sum
   }
-
 
   return (
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza </h1>
-        <h1 className='App-total-cost'>Total: {totalOrderPrice.total}$</h1>
+        <h1 className='App-total-cost'>Total: {totalOrderPrice.sum}$</h1>
       </header>
 
       <img src='images/pizza_photo.png' />
@@ -62,7 +63,7 @@ function App() {
             <td>{pizza.name}</td>
             <td>{pizza.description}</td>
             <td>${pizza.price}</td>
-            <td><button>Add or Remove</button></td>
+            <td><button>Add</button></td>
           </tr>
         ))}
         </>
