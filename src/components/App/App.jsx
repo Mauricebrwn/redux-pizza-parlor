@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import CustomerForm from '../CustomerForm';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import Home from '../Home';
+import { HashRouter as Router, Route, Link, useHistory } from 'react-router-dom';
 
 
 function App() {
@@ -62,43 +61,50 @@ function App() {
   return (
     <Router>
       <div className='App'>
-        
-        <CustomerForm />
+        <header className='App-header'>
+          <h1 className='App-title'>Prime Pizza </h1>
+          <h1 className='App-total-cost'>Total: {totalOrderPrice.total}$</h1>
+        </header>
 
-      <table className= "table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Add/Remove</th>
-          </tr>
-        </thead>
-        <tbody>
-        <>
-        {pizzaList.map(pizza => (
-          <tr key={pizza.id} className="active-row">
-            <td><img src={pizza.image_path} height="150" width="175"></img></td>
-            <td>{pizza.name}</td>
-            <td>{pizza.description}</td>
-            <td>${pizza.price}</td>
-            <td><button onClick={() => handleCartClick(pizza)}>Add or Remove</button></td>
-          </tr>
-        ))}
-        </>
-        </tbody>
-      </table>
-          <div>
-            {cartList.map((cartItem) => {
-            return (
-              <>
-              <li>{cartItem.name}</li>
-              </>
-            )
-            })}
-          </div>
-    </div>
+        <img src='images/pizza_photo.png' />
+        <p>Pizza is great.</p>
+
+        <table className= "table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Add/Remove</th>
+            </tr>
+          </thead>
+          <tbody>
+          <>
+          {pizzaList.map(pizza => (
+            <tr key={pizza.id} className="active-row">
+              <td><img src={pizza.image_path} height="150" width="175"></img></td>
+              <td>{pizza.name}</td>
+              <td>{pizza.description}</td>
+              <td>${pizza.price}</td>
+              <td><button>Add or Remove</button></td>
+            </tr>
+          ))}
+          </>
+          </tbody>
+        </table>
+        <Link to="/customerForm">
+          <button>Next</button>
+        </Link>
+
+        <Route exact path="/customerForm">
+          <CustomerForm />
+        </Route>
+        {/* <Route exact path="/orderCheckout">
+          <OrderCheckout />
+        </Route> */}
+      </div>
+    </Router>
   );
 }
 
